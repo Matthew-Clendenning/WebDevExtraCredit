@@ -11,7 +11,9 @@ function ServicesPage() {
         <Link to="mobile-development" className="services-link">Mobile Development</Link> | 
         <Link to="consulting" className="services-link">Consulting</Link>
       </nav>
-      <Outlet />
+      <Suspense fallback={<div>Loading service...</div>}>
+        <Outlet />
+      </Suspense>
     </div>
   );
 }
