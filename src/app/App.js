@@ -1,7 +1,11 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useRoutes } from 'react-router-dom';
 import routes from './routes.js';
 import Header from '../components/Header';
 import React, { Suspense } from 'react';
+
+function AppRoutes() {
+  return useRoutes(routes);
+}
 
 function App() {
   return (
@@ -10,15 +14,7 @@ function App() {
         <Header />
         <div className="page-container">
           <Suspense fallback={<div>Loading...</div>}>
-            <Routes>
-              {routes.map((route, index) => (
-                <Route 
-                  key={index} 
-                  path={route.path} 
-                  element={route.element} 
-                />
-              ))}
-            </Routes>
+            <AppRoutes />
           </Suspense>
         </div>
       </div>
