@@ -1,12 +1,14 @@
-import HomePage from '../pages/HomePage';
-import DataViewerPage from '../pages/DataViewerPage';
-import AboutPage from '../pages/AboutPage';
-import FAQPage from '../pages/FAQPage';
-import ServicesPage from '../pages/ServicesPage';
-import ContactPage from '../pages/ContactPage';
-import WebDevelopment from '../pages/WebDev';
-import MobileDevelopment from '../pages/MobileDev';
-import Consulting from '../pages/Consulting';
+import React, { lazy } from 'react';
+
+const HomePage = lazy(() => import('../pages/HomePage'));
+const DataViewerPage = lazy(() => import('../pages/DataViewerPage'));
+const AboutPage = lazy(() => import('../pages/AboutPage'));
+const FAQPage = lazy(() => import('../pages/FAQPage'));
+const ServicesPage = lazy(() => import('../pages/ServicesPage'));
+const ContactPage = lazy(() => import('../pages/ContactPage'));
+const WebDevelopment = lazy(() => import('../pages/WebDev'));
+const MobileDevelopment = lazy(() => import('../pages/MobileDev'));
+const Consulting = lazy(() => import('../pages/Consulting'));
 
 const routes = [
   { path: '/', element: <HomePage /> },
@@ -14,14 +16,14 @@ const routes = [
   { path: '/about', element: <AboutPage /> },
   { path: '/faq', element: <FAQPage /> },
   { path: '/contact', element: <ContactPage /> },
-  { 
-    path: '/services', 
-    element: <ServicesPage />, 
+  {
+    path: '/services',
+    element: <ServicesPage />,
     children: [
       { path: 'web-development', element: <WebDevelopment /> },
       { path: 'mobile-development', element: <MobileDevelopment /> },
       { path: 'consulting', element: <Consulting /> },
-    ]
+    ],
   },
 ];
 

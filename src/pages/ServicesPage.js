@@ -1,31 +1,19 @@
-import React from 'react';
-import { Link, Outlet, useLocation } from 'react-router-dom';
+import React, { Suspense } from 'react';
+import { Link, Outlet } from 'react-router-dom';
+import '../styles/App.css';
 
 function ServicesPage() {
-  const location = useLocation();
-  
   return (
-    <div>
-      <h1>Our Services</h1>
-      <nav>
-        <Link to="web-development">Web Development</Link> | 
-        <Link to="mobile-development">Mobile Development</Link> | 
-        <Link to="consulting">Consulting</Link>
+    <div className="services-container">
+      <h1 className="services-title">Our Services</h1>
+      <nav className="services-nav">
+        <Link to="web-development" className="services-link">Web Development</Link> | 
+        <Link to="mobile-development" className="services-link">Mobile Development</Link> | 
+        <Link to="consulting" className="services-link">Consulting</Link>
       </nav>
-      
-      {/* Display service details only on nested routes */}
-      {location.pathname === "/services" ? (
-        <div>
-          <h2>Available Services</h2>
-          <ul>
-            <li><Link to="web-development">Web Development</Link> - Build responsive websites.</li>
-            <li><Link to="mobile-development">Mobile Development</Link> - Create mobile applications.</li>
-            <li><Link to="consulting">Consulting</Link> - Get expert advice and solutions.</li>
-          </ul>
-        </div>
-      ) : (
-        <Outlet />  // Renders the child route component when a nested route is selected
-      )}
+      <Suspense fallback={<div>Loading service...</div>}>
+        <Outlet />
+      </Suspense>
     </div>
   );
 }
